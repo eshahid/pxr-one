@@ -19,11 +19,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class HibernateConfig {
 
 	// Data base configuration details - change based on your DBMS.
-	private final static String DATABASE_URL = "jdbc:h2:tcp://localhost/~/shopone";
-	private final static String DATABASE_DRIVER = "org.h2.Driver";
-	private final static String DATABASE_DIALECT = "org.hibernate.dialect.H2Dialect";
-	private final static String DATABASE_USERNAME = "sa";
-	private final static String DATABASE_PASSWORD = "";
+	private final static String DATABASE_URL = "jdbc:mariadb://localhost/pxrone";
+	private final static String DATABASE_DRIVER = "org.mariadb.jdbc.Driver";
+	private final static String DATABASE_DIALECT = "org.hibernate.dialect.MariaDB53Dialect";
+	private final static String DATABASE_USERNAME = "root";
+	private final static String DATABASE_PASSWORD = "Passw0rd123";
 
 	// dataSource bean will be available
 	@Bean

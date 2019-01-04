@@ -21,7 +21,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ShopOne - ${title}</title>
+<title>PXROne - ${title}</title>
 
 <script>
 	window.menu = '${title}';
