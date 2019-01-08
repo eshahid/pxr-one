@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,11 +24,16 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String code;
+	
+	@NotBlank(message = "Please enter product name!")
 	private String name;
+	@NotBlank(message = "Please enter product brand!")
 	private String brand;
 	@JsonIgnore
+	@NotBlank(message = "Please enter product description!")
 	private String description;
 	@Column(name = "unit_price")
+	@Min(value=1, message="The price cannot be less than 1!")
 	private double unitPrice;
 	private int quantity;
 	@Column(name = "is_active")
@@ -38,6 +48,17 @@ public class Product {
 	private int purchases;
 	private int views;
 	
+	@Transient
+	private MultipartFile file;
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	//default constructor
 	public Product() {
 		this.code = "PRD" + UUID.randomUUID().toString().substring(26).toUpperCase();
@@ -115,6 +136,14 @@ public class Product {
 	}
 	public void setViews(int views) {
 		this.views = views;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
+				+ description + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active=" + active
+				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views="
+				+ views + "]";
 	}
 	
 
